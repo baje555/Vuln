@@ -1,0 +1,12 @@
+{
+  "name": "vulnlab-tech",
+  "version": "1.0.0",
+  "description": "Deliberately Vulnerable Web Application for CTF Training",
+  "engines": {
+    "node": "18"
+  },
+  "scripts": {
+    "build": "./mvnw clean package -DskipTests",
+    "start": "java -jar target/vulnlab-tech-1.0.0.jar"
+  }
+}

@@ -1,5 +1,6 @@
 # Maven
 target/
+!target/vulnlab-tech-1.0.0.jar
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
@@ -21,7 +22,6 @@ dependency-reduced-pom.xml
 
 # Build
 *.class
-*.jar
 *.war
 *.ear
 *.zip

@@ -6,7 +6,7 @@
     "node": "20"
   },
   "scripts": {
-    "build": "mvn clean package -DskipTests",
+    "build": "bash -c 'chmod +x mvnw && ./mvnw clean package -DskipTests'",
     "start": "java -jar target/vulnlab-tech-1.0.0.jar"
   }
 }

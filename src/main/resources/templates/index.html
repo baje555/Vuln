@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VulnLab Tech - CTF Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        nav {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: #667eea;
+        }
+        
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .hero {
+            text-align: center;
+            color: white;
+            margin-bottom: 3rem;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .level-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .level-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+            color: #333;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: block;
+        }
+        
+        .level-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .level-card h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+        
+        .level-card p {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        .difficulty {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+        
+        .difficulty.easy {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .difficulty.medium {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .difficulty.hard {
+            background: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-brand">VulnLab Tech</div>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a th:if="${username}" th:text="'Welcome, ' + ${username}"></a>
+            <a th:if="${username}" href="/dashboard">Dashboard</a>
+            <a th:if="${username}" href="/logout">Logout</a>
+            <a th:if="!${username}" href="/login">Login</a>
+            <a th:if="!${username}" href="/register">Register</a>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <div class="hero">
+            <h1>VulnLab Tech</h1>
+            <p>Learn Web Security Through Hands-On CTF Challenges</p>
+        </div>
+        
+        <div class="level-grid">
+            <a href="/level1/login" class="level-card">
+                <h3>Level 1</h3>
+                <p>SQL Injection</p>
+                <p>The login system checks username and password against the database. However, the query is not properly secured.</p>
+                <span class="difficulty easy">Easy</span>
+            </a>
+            
+            <a href="/level2/search" class="level-card">
+                <h3>Level 2</h3>
+                <p>Reflected XSS</p>
+                <p>The search functionality reflects user input back to the page without proper sanitization.</p>
+                <span class="difficulty easy">Easy</span>
+            </a>
+            
+            <a href="/level3/profile" class="level-card">
+                <h3>Level 3</h3>
+                <p>Stored XSS</p>
+                <p>Users can update their profile information which is stored and displayed to other users.</p>
+                <span class="difficulty easy">Easy</span>
+            </a>
+            
+            <a href="/level4/user?id=1" class="level-card">
+                <h3>Level 4</h3>
+                <p>IDOR</p>
+                <p>Each user has a profile page accessible via a user ID parameter. Access control checks are not properly enforced.</p>
+                <span class="difficulty easy">Easy</span>
+            </a>
+            
+            <a href="/level5/upload" class="level-card">
+                <h3>Level 5</h3>
+                <p>File Upload</p>
+                <p>The website allows users to upload files. The server does not properly validate uploaded file types.</p>
+                <span class="difficulty medium">Medium</span>
+            </a>
+            
+            <a href="/level6/ping" class="level-card">
+                <h3>Level 6</h3>
+                <p>Command Injection</p>
+                <p>The application provides a network utility tool to ping an IP address. The server executes system commands based on user input.</p>
+                <span class="difficulty medium">Medium</span>
+            </a>
+            
+            <a href="/level7/admin" class="level-card">
+                <h3>Level 7</h3>
+                <p>Broken Authentication</p>
+                <p>The admin panel should only be accessible to administrators. However, access control checks are not properly implemented.</p>
+                <span class="difficulty medium">Medium</span>
+            </a>
+            
+            <a href="/level8/password" class="level-card">
+                <h3>Level 8</h3>
+                <p>CSRF</p>
+                <p>Authenticated users can change their password via a POST request. The application does not verify the request origin.</p>
+                <span class="difficulty medium">Medium</span>
+            </a>
+            
+            <a href="/level9/welcome?name=test" class="level-card">
+                <h3>Level 9</h3>
+                <p>SSTI</p>
+                <p>The application dynamically renders user input inside a server-side template. Input is not properly sanitized.</p>
+                <span class="difficulty hard">Hard</span>
+            </a>
+            
+            <a href="/level10/final" class="level-card">
+                <h3>Level 10</h3>
+                <p>Final Challenge</p>
+                <p>This challenge requires chaining multiple vulnerabilities together to gain admin access and retrieve the final flag.</p>
+                <span class="difficulty hard">Hard</span>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

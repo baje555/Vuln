@@ -1,10 +1,9 @@
 services:
   - type: web
     name: vulnlab-tech
-    env: java
+    env: docker
     plan: free
-    buildCommand: ./mvnw clean package -DskipTests
-    startCommand: java -jar target/vulnlab-tech-1.0.0.jar
+    dockerfilePath: ./Dockerfile
     envVars:
       - key: PORT
         value: 8080

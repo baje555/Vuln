@@ -1,0 +1,12 @@
+{
+  "name": "vulnlab-tech",
+  "version": "1.0.0",
+  "description": "Deliberately Vulnerable Web Application for CTF Training",
+  "scripts": {
+    "build": "echo 'Build skipped - using pre-built JAR'",
+    "start": "java -jar target/vulnlab-tech-1.0.0.jar"
+  },
+  "engines": {
+    "node": "20"
+  }
+}

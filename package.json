@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "Deliberately Vulnerable Web Application for CTF Training",
   "engines": {
-    "node": "18"
+    "node": "20"
   },
   "scripts": {
-    "build": "./mvnw clean package -DskipTests",
+    "build": "mvn clean package -DskipTests",
     "start": "java -jar target/vulnlab-tech-1.0.0.jar"
   }
 }
